@@ -1,0 +1,125 @@
+/*
+  Colors:
+  Dark Blue: #252e35
+  Light Green: #90e563
+  Dark Green: #218762
+  Light Gray: #a3a3a3
+*/
+
+body {
+  background-color: #252e35;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1em;
+  box-sizing: border-box;
+  min-width: 960px;
+}
+
+.mobile-content {
+  display: none;
+}
+
+.content-container {
+  width: 700px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 80px;
+}
+
+.center {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.spacer {
+  height: 20px;
+}
+
+h3 {
+  background-color: #218762;
+  padding: 10px 0;
+  text-align: center;
+  font-size: .9em;
+}
+
+p {
+  line-height: 1.5em;
+  margin: 15px 0;
+}
+
+a {
+  text-decoration: none;
+  color: #90e563;
+}
+
+.logo {
+  margin-bottom: 40px;
+}
+
+/* --------------- Buttons ----------------- */
+
+.button {
+  border: none;
+  background-color: transparent;
+  transition: all .25s ease-in-out;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.btn-border {
+  border: 3px solid #90e563;
+  color: #fff;
+  color: #90e563;
+  background-color: transparent;
+}
+
+.btn-rounded {
+  border-radius: 15px;
+}
+
+.btn-small {
+  padding: 5px 10px;
+  border-width: 2px !important;
+  font-size: .8em;
+}
+
+.btn-large {
+  padding: 15px 50px;
+}
+
+.btn-border:hover, .btn-inverse {
+  background-color: #90e563;
+  color: #252e35;
+}
+
+/* --------------- Main Layout ----------------- */
+
+.main-container {
+  float: left;
+  width: 80%;
+}
+
+#main-canvas {
+  background-image: url('../img/base-map.svg');
+  background-repeat: no-repeat;
+  margin: 5vh 2.5%;
+  width: 95%;
+  height: 90vh;
+}
+
+.sidebar {
+  width: 20%;
+  float: right;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+
+.save-share {
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+}
