@@ -17,9 +17,9 @@
 </head>
 
 <body>
-  <div class="main-container">
-    <div class="canvas-container">
-      <canvas id="main-canvas"></canvas> 
+  <div id="main-container">
+    <div id="canvas-container">
+      <canvas id="main-canvas"></canvas>
     </div>
     <div class="save-share">
       <a class="button btn-border btn-small btn-inverse">Save &amp; Submit</a>
@@ -27,21 +27,23 @@
       <a class="button btn-border btn-small">Gallery</a>
     </div>
   </div>
-  <div class="sidebar">
+  <div id="sidebar">
     <h3>Design Your Park</h3>
-    <select name="icon-categories">
-      <option value="choose">Choose a Category</option>
-      <option value="trees">Trees</option>
-      <option value="flowers">Flowers</option>
-      <option value="shrubs">Shrubs</option>
-      <option value="grasses">Grasses</option>
-      <option value="water">Water</option>
-      <option value="sand">Sand</option>
-      <option value="furniture">Furniture</option>
-      <option value="paths">Paths &amp; Walkways</option>
-      <option value="logsrocks">Logs &amp; Rocks</option>
+    <select  id="icon-select" name="icon-categories">
+      <option value="choose" id="choose">Choose a Category</option>
+      <option value="trees" id="trees">Trees</option>
+      <option value="flowers" id="flowers">Flowers</option>
+      <option value="shrubs" id="shrubs">Shrubs</option>
+      <option value="grasses" id="grasses">Grasses</option>
+      <option value="waterSand" id="waterSand">Water &amp; Sand</option>
+      <option value="furniture" id="furniture">Furniture</option>
+      <option value="walkways" id="walkways">Paths &amp; Walkways</option>
+      <option value="logsRocks" id="logsRocks">Logs &amp; Rocks</option>
     </select>
-    <div class="icon-container"></div>
+    <div id="icon-container"></div>
   </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="js/base.js"></script>
 </body>
 </html>

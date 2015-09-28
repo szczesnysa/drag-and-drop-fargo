@@ -97,7 +97,7 @@ a {
 
 /* --------------- Main Layout ----------------- */
 
-.main-container {
+#main-container {
   float: left;
   width: 80%;
 }
@@ -110,11 +110,34 @@ a {
   height: 90vh;
 }
 
-.sidebar {
+#sidebar {
   width: 20%;
   float: right;
   background-color: #fff;
   min-height: 100vh;
+}
+
+#sidebar img {
+  width: 48%;
+  padding: 1%;
+}
+
+#sidebar img:hover {
+  cursor: move;
+}
+
+.tooltip {
+    background: #252e35;
+    color: #fff;
+    /* border: 1px solid red; */
+    padding: 3px 10px;
+}
+
+.tooltip:after {
+  content: attr(icontitle);
+  display: block;
+  background-color: green;
+  color: #fff;
 }
 
 
