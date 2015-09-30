@@ -1,14 +1,14 @@
 /* ---------- Icon Panel Dropdown ------------ */
 
 /* Declare 3D Array for Icon Sets ['filename', 'Title'] */
-var trees = [['trees-american-linden.svg', 'American Linden'], ['trees-cottonwood.svg', 'Cottonwood'], ['trees-golden-willow.svg', 'Golden Willow'], ['trees-maple.svg', 'Maple'], ['trees-paper-birch.svg', 'Paper Birch'], ['trees-pine.svg', 'Pine']];
+var trees = [['trees-american-linden.png', 'American Linden'], ['trees-cottonwood.png', 'Cottonwood'], ['trees-golden-willow.png', 'Golden Willow'], ['trees-maple.png', 'Maple'], ['trees-paper-birch.png', 'Paper Birch'], ['trees-pine.png', 'Pine']];
 var flowers = [];
 var shrubs = [];
-var grasses = [['grasses-big-bluestem.svg', 'Big Bluestem'], ['grasses-cattail.svg', 'Cattail'], ['grasses-fox-sedge.svg', 'Fox Sedge'], ['grasses-horsetail.svg', 'Horsetail'], ['grasses-indian-grass.svg', 'Indian Grass'], ['grasses-little-bluegrass.svg', 'Little Bluegrass']];
+var grasses = [['grasses-big-bluestem.png', 'Big Bluestem'], ['grasses-cattail.png', 'Cattail'], ['grasses-fox-sedge.png', 'Fox Sedge'], ['grasses-horsetail.png', 'Horsetail'], ['grasses-indian-grass.png', 'Indian Grass'], ['grasses-little-bluegrass.png', 'Little Bluegrass']];
 var waterSand = [];
-var furniture = [['furniture-bridge.svg', 'Bridge'], ['furniture-flat-bench.svg', 'Flat Bench'], ['furniture-picnic-table.svg', 'Picnic Table'], ['furniture-stone-bench.svg', 'Stone Bench'], ['furniture-table.svg', 'Table'], ['furniture-wood-bench.svg', 'Wood Bench']];
-var walkways = [['walkways-flat-stone-piece.svg', 'Flat Stone Piece'], ['walkways-scattered-stone-path.svg', 'Scattered Stone Path'], ['walkways-stone-steps.svg', 'Stone Steps'], ['walkways-stone-walkway.svg', 'Stone Walkway'], ['walkways-wood-steps.svg', 'Wood Steps'], ['walkways-wood-walkway.svg', 'Wood Walkway']];
-var logsRocks = [['logsrocks-long-log.svg', 'Long Log'], ['logsrocks-rock1.svg', 'Rock 1'], ['logsrocks-rock2.svg', 'Rock 2'], ['logsrocks-rock3.svg', 'Rock 3'], ['logsrocks-short-log.svg', 'Short Log'], ['logsrocks-upright-log.svg', 'Upright Log']];
+var furniture = [['furniture-bridge.png', 'Bridge'], ['furniture-flat-bench.png', 'Flat Bench'], ['furniture-picnic-table.png', 'Picnic Table'], ['furniture-stone-bench.png', 'Stone Bench'], ['furniture-table.png', 'Table'], ['furniture-wood-bench.png', 'Wood Bench']];
+var walkways = [['walkways-flat-stone-piece.png', 'Flat Stone Piece'], ['walkways-scattered-stone-path.png', 'Scattered Stone Path'], ['walkways-stone-steps.png', 'Stone Steps'], ['walkways-stone-walkway.png', 'Stone Walkway'], ['walkways-wood-steps.png', 'Wood Steps'], ['walkways-wood-walkway.png', 'Wood Walkway']];
+var logsRocks = [['logsrocks-long-log.png', 'Long Log'], ['logsrocks-rock1.png', 'Rock 1'], ['logsrocks-rock2.png', 'Rock 2'], ['logsrocks-rock3.png', 'Rock 3'], ['logsrocks-short-log.png', 'Short Log'], ['logsrocks-upright-log.png', 'Upright Log']];
 
 /* Declare Other variables */
 
@@ -42,10 +42,13 @@ function addSidebarInteraction(){
         var original = event.currentTarget,
             // create a clone of the currentTarget element
             clone = event.currentTarget.cloneNode(true);
+            $(clone).attr('width', '200px');
+            $(clone).attr('height', '200px');
+            $(clone).addClass('canvasIcon');
 
         // insert the clone to the page
-        // TODO: position the clone appropriately
-        $('#main-canvas').appendChild(clone);
+        // position the clone appropriately
+        $('#main-canvas').append(clone);
 
         // start a drag interaction targeting the clone
         interaction.start({ name: 'drag' },
@@ -70,3 +73,9 @@ function dragMoveListener (event) {
   target.setAttribute('data-x', x);
   target.setAttribute('data-y', y);
 }
+
+/* ------------- Make Tooltips for sidebar Icons Work Like the Mock-up ------------- */
+
+
+
+/* ------------- Add Selectability for icons already on cavas and display contextual edit menu ------------- */
