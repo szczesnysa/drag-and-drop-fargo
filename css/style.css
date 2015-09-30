@@ -118,26 +118,22 @@ a {
 }
 
 #sidebar img {
-  width: 48%;
-  padding: 1%;
+  width: 36%;
+  padding: 7%;
 }
 
 #sidebar img:hover {
   cursor: move;
 }
 
-.tooltip {
-    background: #252e35;
-    color: #fff;
-    /* border: 1px solid red; */
-    padding: 3px 10px;
-}
-
-.tooltip:after {
-  content: attr(icontitle);
-  display: block;
-  background-color: green;
-  color: #fff;
+#icon-select {
+  font-size: .8em;
+  width: 80%;
+  margin: 10px 10%;
+  padding: 5px;
+  border: solid 2px #252e35;
+  border-radius: 5px;
+  color: #a3a3a3;
 }
 
 

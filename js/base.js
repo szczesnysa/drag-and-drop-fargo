@@ -20,62 +20,53 @@ dropdown.change(function() {
   var iconArray = window[dropdown.val()];
   iconContainer.empty();
   for (var i = 0; i < iconArray.length; i++){
-    iconContainer.append("<img src='img/" + iconArray[i][0] + "' iconTitle='" + iconArray[i][1] + "' />");
+    iconContainer.append("<img src='img/" + iconArray[i][0] + "' title='" + iconArray[i][1] + "' />");
   }
-  setTooltips();
+  addSidebarInteraction();
 });
 
-/* -------------- Style Tooltips ----------------- */
 
-var iconTitle = "";
-console.log($('#sidebar img'));
+/* Dragging */
 
-function setTooltips(){
+function addSidebarInteraction(){
+  interact('#icon-container img').draggable({onmove: dragMoveListener});
 
-  $('#sidebar img').on("mouseenter", function(e){
-    $(this).addClass('tooltip');
-    /*
-    iconTitle = $(this).attr('title');
-    $(this).removeAttr("title").addClass('tooltip'); */
-  });
+  interact('#icon-container img')
+    .draggable({ manualStart: true })
+    .on('move', function (event) {
+      var interaction = event.interaction;
 
-  $('#sidebar img').on("mouseleave", function(e){
-    $(this).removeClass('tooltip');
-    /* $(this).attr("title", iconTitle).removeClass('tooltip'); */
-  });
+      // if the pointer was moved while being held down
+      // and an interaction hasn't started yet
+      if (interaction.pointerIsDown && !interaction.interacting()) {
+        var original = event.currentTarget,
+            // create a clone of the currentTarget element
+            clone = event.currentTarget.cloneNode(true);
 
+        // insert the clone to the page
+        // TODO: position the clone appropriately
+        $('#main-canvas').appendChild(clone);
+
+        // start a drag interaction targeting the clone
+        interaction.start({ name: 'drag' },
+                          event.interactable,
+                          clone);
+      }
+    });
 }
 
+function dragMoveListener (event) {
+  var target = event.target,
+      // keep the dragged position in the data-x/data-y attributes
+      x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+      y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-/* (function () { */
-  /*  var ID = "tooltip", CLS_ON = "tooltip_ON", FOLLOW = FALSE,
-    DATA = "_tooltip", OFFSET_X = 20, OFFSET_Y = 20,
-    showAt = function (e) {
-        var ntop = e.pageY + OFFSET_Y, nleft = e.pageX + OFFSET_X;
-        $("#" + ID).html($(e.target).data(DATA)).css({
-            position: "absolute", top: ntop, left: nleft
-        }).show();
-    };
-    $(document).on("mouseenter", "*[title]", function (e) {
-        $(this).data(DATA, $(this).attr("title"));
-        $(this).removeAttr("title").addClass(CLS_ON);
-        $("<div id='" + ID + "' />").appendTo("body");
-        showAt(e);
-    });
-    $(document).on("mouseleave", "." + CLS_ON, function (e) {
-        $(this).attr("title", $(this).data(DATA)).removeClass(CLS_ON);
-        $("#" + ID).remove();
-    });
-    if (FOLLOW) { $(document).on("mousemove", "." + CLS_ON, showAt); } */
-/* }()); */
+  // translate the element
+  target.style.webkitTransform =
+  target.style.transform =
+    'translate(' + x + 'px, ' + y + 'px)';
 
-/* Customization:
-var ID = "tooltip"; // The ID of the styleable tooltip
-var CLS_ON = "tooltip_ON"; // Does not matter, make it somewhat unique
-var FOLLOW = true; // TRUE to enable mouse following, FALSE to have static tooltips
-var DATA = "_tooltip"; // Does not matter, make it somewhat unique
-var OFFSET_X = 20, OFFSET_Y = 10; // Tooltip's distance to the cursor
-
-Reference Link: http://stackoverflow.com/questions/2011142/how-to-change-the-style-of-title-attribute-inside-the-anchor-tag
-
-*/
+  // update the posiion attributes
+  target.setAttribute('data-x', x);
+  target.setAttribute('data-y', y);
+}
