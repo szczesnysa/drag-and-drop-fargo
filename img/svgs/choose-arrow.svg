@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-379 181 200 200" style="enable-background:new -379 181 200 200;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#A3A3A3;stroke-width:6;stroke-linejoin:round;}
+	.st1{fill:#A3A3A3;}
+	.st2{font-family:'MyriadPro-Regular';}
+	.st3{font-size:28px;}
+</style>
+<g>
+	<g>
+		<line class="st0" x1="-279" y1="335" x2="-279" y2="239.4"/>
+		<g>
+			<polygon class="st1" points="-279,192 -251.7,258.9 -279,243 -306.3,258.9 			"/>
+		</g>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 -368 364)" class="st1 st2 st3">Pick a Category</text>
+</svg>
