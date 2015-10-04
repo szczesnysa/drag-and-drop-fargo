@@ -66,6 +66,32 @@ interact('#icon-container img').draggable({onmove: dragMoveListener});
       }
     }); */
 
+  /*  interact('#icon-container img')
+      .draggable()
+      .on('move', function (event) {
+        var interaction = event.interaction;
+
+        // if the pointer was moved while being held down
+        // and an interaction hasn't started yet
+        if (interaction.pointerIsDown && !interaction.interacting()) {
+          var original = event.currentTarget,
+              // create a clone of the currentTarget element
+              clone = event.currentTarget.cloneNode(true);
+              $(clone).attr('width', '200px');
+              $(clone).attr('height', '200px');
+              $(clone).addClass('canvasIcon');
+
+          // insert the clone to the page
+          // position the clone appropriately
+          $('#sidebar').append(clone);
+
+          // start a drag interaction targeting the clone
+          interaction.start({ name: 'drag' },
+                            event.interactable,
+                            clone);
+        }
+      }); */
+
     /* Next try: cloning icon as next icon in sidebar... */
 }
 
@@ -84,6 +110,34 @@ function dragMoveListener (event) {
   target.setAttribute('data-x', x);
   target.setAttribute('data-y', y);
 }
+
+function dropIcon(){
+
+}
+
+/* Set Dropzone */
+
+var canvas = document.getElementById('main-canvas');
+var context = canvas.getContext("2d");
+
+interact('#main-canvas')
+  .dropzone({
+    ondrop: function (event) {
+        addDroppedIcon(event);
+    }
+  })
+  .on('dropactivate', function (event) {
+    event.target.classList.add('drop-activated');
+  });
+
+  function addDroppedIcon(event){
+    baseImage = new Image();
+    baseImage.src = event.relatedTarget.getAttribute('src');
+    baseImage.onload = function(){
+      context.drawImage(baseImage, 100, 100, 100, 100);
+    };
+  }
+
 
 /* ------------- Make Tooltips for sidebar Icons Work Like the Mock-up ------------- */
 
