@@ -36,66 +36,30 @@ function displayIcons(){
 
 
 /* Dragging */
+var clone;
 
 function addSidebarInteraction(){
-interact('#icon-container img').draggable({onmove: dragMoveListener});
+interact('#icon-container img').draggable({onstart: cloneSidebarIcon, onmove: dragMoveListener, onend: addFinalIcon});
 
-  /* interact('#icon-container img')
-    .draggable({ manualStart: true })
-    .on('move', function (event) {
-      var interaction = event.interaction;
+}
 
-      // if the pointer was moved while being held down
-      // and an interaction hasn't started yet
-      if (interaction.pointerIsDown && !interaction.interacting()) {
-        var original = event.currentTarget,
-            // create a clone of the currentTarget element
-            clone = event.currentTarget.cloneNode(true);
-            $(clone).attr('width', '200px');
-            $(clone).attr('height', '200px');
-            $(clone).addClass('canvasIcon');
+function cloneSidebarIcon(event){
+  clone = event.target.cloneNode(true);
+  $(event.target).after(clone);
+}
 
-        // insert the clone to the page
-        // position the clone appropriately
-        $('#sidebar').append(clone);
+function addFinalIcon(event){
+  var offsetx = $(event.target).offset();
+  var clonedIcon = event.target.cloneNode(true);
+  $(clonedIcon).css({"transform": "translate(0, 0)", "width" : "100px", "height" : "100px", "position": "absolute", "top" : offsetx.top, "left":offsetx.left});
+  $('#main-canvas').append(clonedIcon);
+  $(event.target).remove();
 
-        // start a drag interaction targeting the clone
-        interaction.start({ name: 'drag' },
-                          event.interactable,
-                          clone);
-      }
-    }); */
-
-  /*  interact('#icon-container img')
-      .draggable()
-      .on('move', function (event) {
-        var interaction = event.interaction;
-
-        // if the pointer was moved while being held down
-        // and an interaction hasn't started yet
-        if (interaction.pointerIsDown && !interaction.interacting()) {
-          var original = event.currentTarget,
-              // create a clone of the currentTarget element
-              clone = event.currentTarget.cloneNode(true);
-              $(clone).attr('width', '200px');
-              $(clone).attr('height', '200px');
-              $(clone).addClass('canvasIcon');
-
-          // insert the clone to the page
-          // position the clone appropriately
-          $('#sidebar').append(clone);
-
-          // start a drag interaction targeting the clone
-          interaction.start({ name: 'drag' },
-                            event.interactable,
-                            clone);
-        }
-      }); */
-
-    /* Next try: cloning icon as next icon in sidebar... */
 }
 
 function dragMoveListener (event) {
+
+
   var target = event.target,
       // keep the dragged position in the data-x/data-y attributes
       x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
@@ -110,15 +74,10 @@ function dragMoveListener (event) {
   target.setAttribute('data-x', x);
   target.setAttribute('data-y', y);
 }
-
-function dropIcon(){
-
-}
-
 /* Set Dropzone */
 
-var canvas = document.getElementById('main-canvas');
-var context = canvas.getContext("2d");
+//var canvas = document.getElementById('main-canvas');
+//var context = canvas.getContext("2d");
 
 interact('#main-canvas')
   .dropzone({
@@ -133,11 +92,24 @@ interact('#main-canvas')
   function addDroppedIcon(event){
     baseImage = new Image();
     baseImage.src = event.relatedTarget.getAttribute('src');
+
     baseImage.onload = function(){
-      context.drawImage(baseImage, 100, 100, 100, 100);
+    /*  var imgx = event.relatedTarget.getAttribute('data-x');
+      var imgy = event.relatedTarget.getAttribute('data-y');
+      var img = event.relatedTarget.cloneNode(true);
+      img.setAttribute('data-x', imgx);
+      img.setAttribute('data-y', imgy);
+      $('#main-canvas').append(img); */
+
     };
   }
 
+/*
+1) When click to drag - duplicate the object !!YAY!!
+2) Put it exactly where it is -sort of----
+3) On drop, place another clone at ddrop location inside map div
+4) Delete the dragged element
+*/
 
 /* ------------- Make Tooltips for sidebar Icons Work Like the Mock-up ------------- */
 
