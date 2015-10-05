@@ -20,7 +20,7 @@ var iconContainer = $('#icon-container');
 
 displayIcons();
 
-/* On Drowdown change */
+/* On Drowpdown change */
 dropdown.change(function(){
   displayIcons();
 });
@@ -76,9 +76,6 @@ function dragMoveListener (event) {
 }
 /* Set Dropzone */
 
-//var canvas = document.getElementById('main-canvas');
-//var context = canvas.getContext("2d");
-
 interact('#main-canvas')
   .dropzone({
     ondrop: function (event) {
@@ -90,26 +87,8 @@ interact('#main-canvas')
   });
 
   function addDroppedIcon(event){
-    baseImage = new Image();
-    baseImage.src = event.relatedTarget.getAttribute('src');
 
-    baseImage.onload = function(){
-    /*  var imgx = event.relatedTarget.getAttribute('data-x');
-      var imgy = event.relatedTarget.getAttribute('data-y');
-      var img = event.relatedTarget.cloneNode(true);
-      img.setAttribute('data-x', imgx);
-      img.setAttribute('data-y', imgy);
-      $('#main-canvas').append(img); */
-
-    };
   }
-
-/*
-1) When click to drag - duplicate the object !!YAY!!
-2) Put it exactly where it is -sort of----
-3) On drop, place another clone at ddrop location inside map div
-4) Delete the dragged element
-*/
 
 /* ------------- Make Tooltips for sidebar Icons Work Like the Mock-up ------------- */
 
