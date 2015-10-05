@@ -4,7 +4,7 @@
 var choose = [['choose-arrow.png', 'Choose a Category']];
 var trees = [['trees-american-linden.png', 'American Linden'], ['trees-cottonwood.png', 'Cottonwood'], ['trees-golden-willow.png', 'Golden Willow'], ['trees-maple.png', 'Maple'], ['trees-paper-birch.png', 'Paper Birch'], ['trees-pine.png', 'Pine']];
 var flowers = [];
-var bushes = [];
+var bushes = [['bushes-arborvitae.png', 'Arborvitae'], ['bushes-buckthorn.png', 'Buckthorn'], ['bushes-burning-bush.png', 'Burning Bush'], ['bushes-dogwood.png', 'Dogwood'], ['bushes-flame-amur-maple.png', 'Flame Amur Maple'], ['bushes-suffruticosa.png', 'Suffruticosa']];
 var grasses = [['grasses-big-bluestem.png', 'Big Bluestem'], ['grasses-cattail.png', 'Cattail'], ['grasses-fox-sedge.png', 'Fox Sedge'], ['grasses-horsetail.png', 'Horsetail'], ['grasses-indian-grass.png', 'Indian Grass'], ['grasses-little-bluegrass.png', 'Little Bluegrass']];
 var waterSand = [['watersand-lake.png', 'Lake'], ['watersand-sand.png', 'Sand'], ['watersand-sandbar.png', 'Sandbar'], ['watersand-sandpit.png', 'Sand Pit'], ['watersand-small-lake.png', 'Small Lake'], ['watersand-small-river.png', 'Small River'], ['watersand-wide-river.png', 'Wide River'], ['watersand-lake-with-island.png', 'Lake and Island']];
 var furniture = [['furniture-bridge.png', 'Bridge'], ['furniture-flat-bench.png', 'Flat Bench'], ['furniture-picnic-table.png', 'Picnic Table'], ['furniture-stone-bench.png', 'Stone Bench'], ['furniture-table.png', 'Table'], ['furniture-wood-bench.png', 'Wood Bench']];
@@ -79,16 +79,12 @@ function dragMoveListener (event) {
 interact('#main-canvas')
   .dropzone({
     ondrop: function (event) {
-        addDroppedIcon(event);
+        
     }
   })
   .on('dropactivate', function (event) {
     event.target.classList.add('drop-activated');
   });
-
-  function addDroppedIcon(event){
-
-  }
 
 /* ------------- Make Tooltips for sidebar Icons Work Like the Mock-up ------------- */
 
