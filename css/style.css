@@ -122,7 +122,7 @@ a {
   padding: 7%;
 }
 
-#sidebar img:hover {
+#sidebar img:hover, #main-canvas img:hover {
   cursor: move;
 }
 

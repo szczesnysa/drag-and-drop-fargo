@@ -54,12 +54,11 @@ function addFinalIcon(event){
   $(clonedIcon).css({"transform": "translate(0, 0)", "width" : "100px", "height" : "100px", "position": "absolute", "top" : offsetx.top, "left":offsetx.left});
   $('#main-canvas').append(clonedIcon);
   $(event.target).remove();
+  addInteractability(clonedIcon);
 
 }
 
 function dragMoveListener (event) {
-
-
   var target = event.target,
       // keep the dragged position in the data-x/data-y attributes
       x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
@@ -79,19 +78,31 @@ function dragMoveListener (event) {
 interact('#main-canvas')
   .dropzone({
     ondrop: function (event) {
-        
+
     }
   })
   .on('dropactivate', function (event) {
     event.target.classList.add('drop-activated');
   });
 
+
+/* ------------- Add Selectability for icons already on cavas and display contextual edit menu ------------- */
+
+function addInteractability(icon){
+  $(icon).attr('data-x', 0);
+  $(icon).attr('data-y', 0);
+  interact(icon).draggable({onmove: dragMoveListener});
+  $(icon).dblclick(showOptionsBox);
+
+}
+
+function showOptionsBox(){
+  console.log('showing options');
+}
+
+
 /* ------------- Make Tooltips for sidebar Icons Work Like the Mock-up ------------- */
 
 
 
 /* ------------- Save & Submit ------------- */
-
-
-
-/* ------------- Add Selectability for icons already on cavas and display contextual edit menu ------------- */
