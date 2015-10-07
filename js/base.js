@@ -15,6 +15,7 @@ var logsRocks = [['logsrocks-long-log.png', 'Long Log'], ['logsrocks-rock1.png',
 
 var dropdown  = $('#icon-select');
 var iconContainer = $('#icon-container');
+var selectedOptions = $('#selectedOptions');
 
 /* Set Dropdown Initially */
 
@@ -92,15 +93,26 @@ function addInteractability(icon){
   $(icon).attr('data-x', 0);
   $(icon).attr('data-y', 0);
   interact(icon).draggable({onmove: dragMoveListener});
-  $(icon).dblclick(showOptionsBox);
-
+  $(icon).click(showOptionsBox);
 }
 
 function showOptionsBox(event){
-  $('#main-canvas .selected').removeClass('selected');
-  $(event.target).addClass('selected');
-  $(event.target).append()
+  if(!$(event.target).hasClass('selected')){
+    console.log('inside show options');
+    $('#main-canvas .selected').removeClass('selected');
+    $(event.target).addClass('selected');
+    selectedOptions.css({'display': 'block'});
+    $('#scaleUp').click(scaleUp(event.target));
+  }
 }
+
+function scaleUp(icon){
+  console.log(icon);
+  var width = $(icon).width();
+  console.log(width);
+}
+
+
 
 
 /* ------------- Make Tooltips for sidebar Icons Work Like the Mock-up ------------- */
