@@ -96,8 +96,10 @@ function addInteractability(icon){
 
 }
 
-function showOptionsBox(){
-  console.log('showing options');
+function showOptionsBox(event){
+  $('#main-canvas .selected').removeClass('selected');
+  $(event.target).addClass('selected');
+  $(event.target).append()
 }
 
 

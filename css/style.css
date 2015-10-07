@@ -32,6 +32,10 @@ body {
   margin-left: auto;
 }
 
+.clear {
+  clear: both;
+}
+
 .spacer {
   height: 20px;
 }
@@ -136,6 +140,44 @@ a {
   color: #a3a3a3;
 }
 
+#optionsBox {
+  background-color: #fff;
+  color: #252e35;
+  width: 200px;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: .8em;
+  position: absolute;
+  display: none;
+}
+
+#optionsBox button {
+  background-color: #218762;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#optionsBox button:hover {
+  cursor: pointer;
+  background-color: #1f7554;
+}
+
+#optionsBox #scale {
+  float: left;
+  padding-right: 10px;
+}
+
+#optionsBox #scaleUp, #optionsBox #scaleDown {
+  font-weight: bold;
+  font-size: 1.5em;
+  width: 20%;
+}
+
+.selected {
+  border: 2px dashed #999999;
+  padding: 5px;
+}
 
 .save-share {
   position: absolute;
