@@ -3,7 +3,7 @@
 /* Declare 3D Array for Icon Sets ['filename', 'Title'] */
 var choose = [['choose-arrow.png', 'Choose a Category']];
 var trees = [['trees-american-linden.png', 'American Linden'], ['trees-cottonwood.png', 'Cottonwood'], ['trees-golden-willow.png', 'Golden Willow'], ['trees-maple.png', 'Maple'], ['trees-paper-birch.png', 'Paper Birch'], ['trees-pine.png', 'Pine']];
-var flowers = [];
+var flowers = [['flowers-blue-eyed-grass.png', 'Blue Eyed Grass'], ['flowers-hyssop.png', 'Hyssop'], ['flowers-marsh-marigold.png', 'Marsh Marigold'], ['flowers-milkweed.png', 'Milkweed'], ['flowers-prairie-violet.png', 'Prairie Violet'], ['flowers-wild-prairie-rose.png', 'Wild Prairie Rose']];
 var bushes = [['bushes-arborvitae.png', 'Arborvitae'], ['bushes-buckthorn.png', 'Buckthorn'], ['bushes-burning-bush.png', 'Burning Bush'], ['bushes-dogwood.png', 'Dogwood'], ['bushes-flame-amur-maple.png', 'Flame Amur Maple'], ['bushes-suffruticosa.png', 'Suffruticosa']];
 var grasses = [['grasses-big-bluestem.png', 'Big Bluestem'], ['grasses-cattail.png', 'Cattail'], ['grasses-fox-sedge.png', 'Fox Sedge'], ['grasses-horsetail.png', 'Horsetail'], ['grasses-indian-grass.png', 'Indian Grass'], ['grasses-little-bluegrass.png', 'Little Bluegrass']];
 var waterSand = [['watersand-lake.png', 'Lake'], ['watersand-sand.png', 'Sand'], ['watersand-sandbar.png', 'Sandbar'], ['watersand-sandpit.png', 'Sand Pit'], ['watersand-small-lake.png', 'Small Lake'], ['watersand-small-river.png', 'Small River'], ['watersand-wide-river.png', 'Wide River'], ['watersand-lake-with-island.png', 'Lake and Island']];
@@ -16,12 +16,23 @@ var logsRocks = [['logsrocks-long-log.png', 'Long Log'], ['logsrocks-rock1.png',
 var dropdown  = $('#icon-select');
 var iconContainer = $('#icon-container');
 var selectedOptions = $('#selectedOptions');
+var zIndex = 1;
 
 /* Set Dropdown Initially */
 
 displayIcons();
 
 /* On Drowpdown change */
+
+$(document).ready(function() {
+    interact('#optionsBox').draggable({onmove: dragMoveListener});
+    $('#removeSelected').click(function(){removeSelected();})
+});
+
+function removeSelected(){
+  $('.selected').removeClass('selected');
+}
+
 dropdown.change(function(){
   displayIcons();
 });
@@ -45,6 +56,7 @@ interact('#icon-container img').draggable({onstart: cloneSidebarIcon, onmove: dr
 }
 
 function cloneSidebarIcon(event){
+  $(event.target).css({'z-index':zIndex});
   clone = event.target.cloneNode(true);
   $(event.target).after(clone);
 }
@@ -52,7 +64,8 @@ function cloneSidebarIcon(event){
 function addFinalIcon(event){
   var offsetx = $(event.target).offset();
   var clonedIcon = event.target.cloneNode(true);
-  $(clonedIcon).css({"transform": "translate(0, 0)", "width" : "100px", "height" : "100px", "position": "absolute", "top" : offsetx.top, "left":offsetx.left});
+  $(clonedIcon).css({"transform": "translate(0, 0)", "width" : "100px", "height" : "100px", "position": "absolute", "top" : offsetx.top, "left":offsetx.left, 'z-index':zIndex});
+  zIndex += 1;
   $('#main-canvas').append(clonedIcon);
   $(event.target).remove();
   addInteractability(clonedIcon);
@@ -98,22 +111,69 @@ function addInteractability(icon){
 
 function showOptionsBox(event){
   if(!$(event.target).hasClass('selected')){
-    console.log('inside show options');
+    removeModifyability();
     $('#main-canvas .selected').removeClass('selected');
     $(event.target).addClass('selected');
     selectedOptions.css({'display': 'block'});
-    $('#scaleUp').click(scaleUp(event.target));
+    addModifyability(event.target);
   }
 }
 
-function scaleUp(icon){
-  console.log(icon);
-  var width = $(icon).width();
-  console.log(width);
+function addModifyability(icon){
+  $('#scaleUp').click(
+    function(){
+      scaleUp(icon);
+  });
+
+  $('#scaleDown').click(
+    function(){
+      scaleDown(icon);
+  });
+
+  $('#layerForward').click(
+    function(){
+      layerForward(icon);
+  });
+
+  $('#layerBackward').click(
+    function(){
+      layerBackward(icon);
+  });
 }
 
+function removeModifyability(){
+  $('#scaleUp').unbind('click');
+  $('#scaleDown').unbind('click');
+  $('#layerForward').unbind('click');
+  $('#layerBackward').unbind('click');
+}
 
+function scaleUp(icon){
+  var width = $(icon).width();
+  if(width < 200) {
+    width += 25;
+    $(icon).css({'width': width + 'px', 'height':width + 'px'});
+  }
+}
 
+function scaleDown(icon){
+  var width = $(icon).width();
+  if(width > 50) {
+    width -= 25;
+    $(icon).css({'width': width + 'px', 'height':width + 'px'});
+  }
+}
+
+function layerForward(icon){
+  var index = $(icon).css('z-index') + 1;
+  $(icon).css({'z-index' : index});
+
+}
+
+function layerBackward(icon){
+  var index = $(icon).css('z-index') - 1;
+  $(icon).css({'z-index' : index});
+}
 
 /* ------------- Make Tooltips for sidebar Icons Work Like the Mock-up ------------- */
 
