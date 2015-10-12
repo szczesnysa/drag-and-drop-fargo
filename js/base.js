@@ -139,6 +139,16 @@ function addModifyability(icon){
     function(){
       layerBackward(icon);
   });
+
+  $('#delete').click(
+    function(){
+      deleteIcon(icon);
+  });
+
+  $('#deselect').click(
+    function(){
+      deselectIcon(icon);
+  });
 }
 
 function removeModifyability(){
@@ -146,6 +156,8 @@ function removeModifyability(){
   $('#scaleDown').unbind('click');
   $('#layerForward').unbind('click');
   $('#layerBackward').unbind('click');
+  $('#delete').unbind('click');
+  $('#deselect').unbind('click');
 }
 
 function scaleUp(icon){
@@ -173,6 +185,17 @@ function layerForward(icon){
 function layerBackward(icon){
   var index = $(icon).css('z-index') - 1;
   $(icon).css({'z-index' : index});
+}
+
+function deleteIcon(icon){
+  $(icon).remove();
+  selectedOptions.css({'display': 'none'});
+}
+
+function deselectIcon(icon){
+  removeModifyability();
+  selectedOptions.css({'display': 'none'});
+  $(icon).removeClass('selected');
 }
 
 /* ------------- Make Tooltips for sidebar Icons Work Like the Mock-up ------------- */

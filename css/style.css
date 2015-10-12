@@ -103,6 +103,10 @@ a {
   color: #252e35;
 }
 
+.btn-inverse:hover {
+  background-color: #80c458;
+}
+
 /* --------------- Main Layout ----------------- */
 
 #main-container {
