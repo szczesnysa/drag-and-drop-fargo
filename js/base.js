@@ -64,7 +64,7 @@ function cloneSidebarIcon(event){
 function addFinalIcon(event){
   var offsetx = $(event.target).offset();
   var clonedIcon = event.target.cloneNode(true);
-  $(clonedIcon).css({"transform": "translate(0, 0)", "width" : "100px", "height" : "100px", "position": "absolute", "top" : offsetx.top, "left":offsetx.left, 'z-index':zIndex});
+  $(clonedIcon).css({"transform": "translate(0, 0)", "width" : "100px", "height" : "100px", "position": "absolute", "top" : offsetx.top +10, "left":offsetx.left +10, 'z-index':zIndex});
   zIndex += 1;
   $('#main-canvas').append(clonedIcon);
   $(event.target).remove();

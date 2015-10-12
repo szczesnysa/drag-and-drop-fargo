@@ -119,6 +119,11 @@ a {
   height: 90vh;
 }
 
+#main-canvas img {
+  border: 2px dashed transparent;
+  padding: 2px;
+}
+
 #sidebar {
   width: 20%;
   float: right;
@@ -194,8 +199,9 @@ a {
 }
 
 .selected {
-  border: 2px dashed #999999;
+  border: 2px dashed #999999 !important;
   padding: 2px;
+  position: relative;
 }
 
 .save-share {
