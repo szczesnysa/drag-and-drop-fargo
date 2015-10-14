@@ -66,7 +66,15 @@ function addFinalIcon(event){
   var clonedIcon = event.target.cloneNode(true);
   $(clonedIcon).css({"transform": "translate(0, 0)", "width" : "100px", "height" : "100px", "position": "absolute", "top" : offsetx.top +10, "left":offsetx.left +10, 'z-index':zIndex});
   zIndex += 1;
+
+  removeModifyability();
+  $('#main-canvas .selected').removeClass('selected');
+  $(clonedIcon).addClass('selected');
+  selectedOptions.css({'display': 'block'});
+
   $('#main-canvas').append(clonedIcon);
+  addModifyability($(clonedIcon));
+
   $(event.target).remove();
   addInteractability(clonedIcon);
 
