@@ -17,6 +17,7 @@ var dropdown  = $('#icon-select');
 var iconContainer = $('#icon-container');
 var selectedOptions = $('#selectedOptions');
 var zIndex = 1;
+var finalImage;
 
 /* Set Dropdown Initially */
 
@@ -44,7 +45,7 @@ function displayIcons(){
     iconContainer.append("<img src='img/" + iconArray[i][0] + "' title='" + iconArray[i][1] + "' />");
   }
   addSidebarInteraction();
-  Tipped.create('#sidebar img');
+  // Tipped.create('#sidebar img');
 }
 
 
@@ -214,3 +215,17 @@ function deselectIcon(icon){
 
 
 /* ------------- Save & Submit ------------- */
+
+$('#saveSubmit').click(function(){saveSubmit();})
+
+function saveSubmit(){
+
+  $('.selected').removeClass('.selected');
+
+  html2canvas($('#main-canvas')).then(function(canvas) {
+      var img = canvas.toDataURL("image/png");
+      finalImage = '<img src="' + img + '"/>';
+      $('#finalImage').append(finalImage);
+    });
+
+}
