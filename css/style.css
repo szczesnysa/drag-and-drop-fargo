@@ -137,7 +137,7 @@ a {
 
 #sidebar img {
   width: 36%;
-  padding: 7%;
+  padding: 15px 7%;
 }
 
 #sidebar img:hover, #main-canvas img:hover {
@@ -212,4 +212,9 @@ a {
   position: absolute;
   bottom: 20px;
   left: 10px;
+}
+
+#main-canvas .tpd-content-wrapper {
+  display: none !important;
+  visible: hidden !important;
 }

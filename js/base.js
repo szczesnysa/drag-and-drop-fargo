@@ -44,6 +44,7 @@ function displayIcons(){
     iconContainer.append("<img src='img/" + iconArray[i][0] + "' title='" + iconArray[i][1] + "' />");
   }
   addSidebarInteraction();
+  Tipped.create('#sidebar img');
 }
 
 
@@ -78,6 +79,8 @@ function addFinalIcon(event){
   $(event.target).remove();
   addInteractability(clonedIcon);
 
+  $('#main-canvas .tpd-content-wrapper').css({'display': 'none'});
+
 }
 
 function dragMoveListener (event) {
@@ -108,7 +111,7 @@ interact('#main-canvas')
   });
 
 
-/* ------------- Add Selectability for icons already on cavas and display contextual edit menu ------------- */
+/* ------------- Add Selectability for icons already on canvas and display contextual edit menu ------------- */
 
 function addInteractability(icon){
   $(icon).attr('data-x', 0);
