@@ -45,7 +45,7 @@ function displayIcons(){
     iconContainer.append("<img src='img/" + iconArray[i][0] + "' title='" + iconArray[i][1] + "' />");
   }
   addSidebarInteraction();
-  // Tipped.create('#sidebar img');
+  Tipped.create('#sidebar img');
 }
 
 
